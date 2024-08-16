@@ -1,0 +1,13 @@
+# Ignorar archivos y directorios específicos de Visual Studio
+.vs/
+
+# Ignorar archivos generados
+*.log
+*.tmp
+
+# Ignorar el directorio node_modules
+node_modules/
+
+# Ignorar archivos de compilación
+/bin/
+/obj/
