@@ -66,14 +66,14 @@ IF (1 = 1) BEGIN
 		--DROP TABLE CatUserSystem
 		CREATE TABLE [dbo].[CatUserSystem]
 		(
-			[Id]			BIGINT			NOT NULL IDENTITY,
-			[Deleted]		BIT				NOT NULL,
+			[Id]				BIGINT			NOT NULL IDENTITY,
+			[Deleted]			BIT				NOT NULL,
 			[IdCatTypeProfile]	TINYINT			NOT NULL,
-			[Name]			VARCHAR(50)		NOT NULL,
+			[Name]				VARCHAR(50)		NOT NULL,
 			[FirstLastName]		VARCHAR(50)		NOT NULL,
 			[SecondLastName]	VARCHAR(50)		NOT NULL,
-			[Email]			VARCHAR(100)		NOT NULL,
-			[Password]		VARCHAR(100)		NOT NULL,
+			[Email]				VARCHAR(100)	NOT NULL,
+			[Password]			VARCHAR(100)	NOT NULL,
 			[CreationDate]		DATETIME		NOT NULL DEFAULT GETDATE(),
 			[LastAccessDate]	DATETIME		NULL,
 			CONSTRAINT [PK_CatUserSystem] PRIMARY KEY ([Id]),
@@ -99,13 +99,13 @@ IF (1 = 1) BEGIN
 		--DROP TABLE LogUserSystem
 		CREATE TABLE [dbo].[LogUserSystem]
 		(
-			[Id]					BIGINT			NOT NULL IDENTITY,
-			[IdCatUserSystem]			BIGINT			NOT NULL, 
+			[Id]							BIGINT			NOT NULL IDENTITY,
+			[IdCatUserSystem]				BIGINT			NOT NULL, 
 			[IdCatUserSystemPerfomedBy]		BIGINT			NULL,
-			[Date]					DATETIME		NOT NULL,
-			[Data]					VARCHAR(MAX)		NULL,
+			[Date]							DATETIME		NOT NULL,
+			[Data]							VARCHAR(MAX)	NULL,
 			[IdCatLogMovementType]			TINYINT			NOT NULL,
-			[Justification]				VARCHAR(500)		NOT NULL
+			[Justification]					VARCHAR(500)	NOT NULL
 			CONSTRAINT [PK_LogUserSystem] PRIMARY KEY ([Id]),
 			CONSTRAINT [FK_LogUserSystem_CatUserSystem] 
 				FOREIGN KEY ([IdCatUserSystem]) REFERENCES [CatUserSystem]([Id]),
@@ -135,13 +135,13 @@ IF (1 = 1) BEGIN
 		--DROP TABLE CatTodo
 		CREATE TABLE [dbo].[CatTodo]
 		(
-			[Id]			INT		NOT NULL IDENTITY,
-			[IdCatUserSystem]	BIGINT		NOT NULL,
-			[Title]			VARCHAR(50)	NOT NULL,
+			[Id]				INT				NOT NULL IDENTITY,
+			[IdCatUserSystem]	BIGINT			NOT NULL,
+			[Title]				VARCHAR(50)		NOT NULL,
 			[Description]		VARCHAR(100)	NOT NULL,
-			[Completed]		BIT		NOT NULL,
-			[Deleted]		BIT		NOT NULL,
-			[CreationDate]		DATETIME	NOT NULL DEFAULT GETDATE(),
+			[Completed]			BIT				NOT NULL,
+			[Deleted]			BIT				NOT NULL,
+			[CreationDate]		DATETIME		NOT NULL DEFAULT GETDATE(),
 			CONSTRAINT [PK_CatTodo] PRIMARY KEY ([Id]),
 			CONSTRAINT [FK_CatTodo_CatUserSystem]
 				FOREIGN KEY ([IdCatUserSystem]) REFERENCES [CatUserSystem]([Id])
@@ -157,13 +157,13 @@ IF (1 = 1) BEGIN
 		--DROP TABLE LogTodo
 		CREATE TABLE [dbo].[LogTodo]
 		(
-			[Id]				BIGINT			NOT NULL IDENTITY,
-			[IdCatTodo]			INT			NOT NULL, 
-			[IdCatUserSystemPerfomedBy]	BIGINT			NULL,
-			[Date]				DATETIME		NOT NULL,
-			[Data]				VARCHAR(MAX)		NULL,
-			[IdCatLogMovementType]		TINYINT			NOT NULL,
-			[Justification]			VARCHAR(500)		NOT NULL,
+			[Id]							BIGINT			NOT NULL IDENTITY,
+			[IdCatTodo]						INT			NOT NULL, 
+			[IdCatUserSystemPerfomedBy]		BIGINT			NULL,
+			[Date]							DATETIME		NOT NULL,
+			[Data]							VARCHAR(MAX)	NULL,
+			[IdCatLogMovementType]			TINYINT			NOT NULL,
+			[Justification]					VARCHAR(500)	NOT NULL,
 			CONSTRAINT [PK_LogTodo] PRIMARY KEY ([Id]),
 			CONSTRAINT [FK_LogTodo_CatTodo]
 				FOREIGN KEY ([IdCatTodo]) REFERENCES [CatTodo]([Id]),
